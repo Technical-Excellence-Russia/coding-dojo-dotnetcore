@@ -15,7 +15,7 @@ jobs:
         dotnet-version: '5.0.x'
 
     - name: Build with dotNet
-      run: dotnet build ./coding-dojo-dotnetcore.sln
+      run: dotnet build
     
     - name: Test with dotNet
-      run: dotnet test ./coding-dojo-dotnetcore.sln
+      run: dotnet test
