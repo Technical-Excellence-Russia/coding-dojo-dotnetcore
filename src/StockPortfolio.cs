@@ -38,11 +38,13 @@ namespace coding_dojo_dotnetcore.src
 
         internal void SellStocks(string ticker, int count)
         {
-            if (count > GetStockCountByTicker(ticker))
+            var currentCount = GetStockCountByTicker(ticker);
+            if (count > currentCount)
             {
                 throw new NoMoreStocksException();
             }
-                
+
+            stocks[ticker] = currentCount - count;
         }
     }
 }

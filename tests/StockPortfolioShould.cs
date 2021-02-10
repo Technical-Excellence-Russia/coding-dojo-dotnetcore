@@ -30,15 +30,27 @@ namespace coding_dojo_dotnetcore.tests
         {
             stockPortFolio.BuyStocks("SBER", 1);
             stockPortFolio.BuyStocks("APPLE", 1);
+
             Assert.AreEqual(1, stockPortFolio.GetStockCountByTicker("SBER"));
             Assert.AreEqual(1, stockPortFolio.GetStockCountByTicker("APPLE"));
             Assert.AreEqual(2, stockPortFolio.GetStockCount());
         }
 
         [Test]
-        public void ThrowNoMoreStocksException()
+        public void ThrowNoMoreStocksExceptionWhenTryToSellMoreThenHave()
         {
             Assert.Throws<NoMoreStocksException>(() => stockPortFolio.SellStocks("ALFA", 100));
+        }
+
+        [Test]
+        public void GiveAbilityToSellStocks()
+        {
+            stockPortFolio.BuyStocks("SBER", 1);
+            stockPortFolio.SellStocks("SBER", 1);
+            stockPortFolio.BuyStocks("APPLE", 1);
+
+            Assert.AreEqual(0, stockPortFolio.GetStockCountByTicker("SBER"));
+            Assert.AreEqual(1, stockPortFolio.GetStockCountByTicker("APPLE"));
         }
     }
 }
