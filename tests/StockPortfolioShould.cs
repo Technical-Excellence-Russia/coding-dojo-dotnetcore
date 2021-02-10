@@ -52,5 +52,15 @@ namespace coding_dojo_dotnetcore.tests
             Assert.AreEqual(0, stockPortFolio.GetStockCountByTicker("SBER"));
             Assert.AreEqual(1, stockPortFolio.GetStockCountByTicker("APPLE"));
         }
+
+        [Test]
+        public void ReturnAllSoldAndBoughtStocks()
+        {
+            stockPortFolio.BuyStocks("SBER", 10);
+            stockPortFolio.SellStocks("SBER", 5);
+            stockPortFolio.BuyStocks("APPLE", 3);
+
+            Assert.AreEqual(18, stockPortFolio.GeAllSoldAndBoughtStocks());
+        }
     }
 }

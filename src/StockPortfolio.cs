@@ -7,6 +7,7 @@ namespace coding_dojo_dotnetcore.src
     public class StockPortfolio
     {
         private Dictionary<string, int> stocks = new Dictionary<string, int>();
+        private int contractsCount = 0;
 
         internal int GetStockCount()
         {
@@ -24,6 +25,8 @@ namespace coding_dojo_dotnetcore.src
             {
                 stocks.Add(ticker, count);
             }
+            
+            contractsCount+=count;
         }
 
         internal int GetStockCountByTicker(string ticker)
@@ -43,8 +46,15 @@ namespace coding_dojo_dotnetcore.src
             {
                 throw new NoMoreStocksException();
             }
-
+            
             stocks[ticker] = currentCount - count;
+
+            contractsCount += count;
+        }
+
+        internal int GeAllSoldAndBoughtStocks()
+        {
+            return contractsCount;
         }
     }
 }
